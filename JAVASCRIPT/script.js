@@ -1,7 +1,7 @@
-// Utilidades
+
 const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
 
-// Elementos
+
 const nav = document.getElementById('nav');
 const pic = document.getElementById('profilePic');
 const dock = document.getElementById('avatarDock');
@@ -12,7 +12,6 @@ const tabs = [...document.querySelectorAll('.tab')];
 const tabIndicator = document.getElementById('tabIndicator');
 const scrollbar = document.getElementById('scrollbar');
 
-// 1) Scroll suave al pulsar tab
 tabs.forEach(btn=>{
   btn.addEventListener('click', ()=>{
     const sel = btn.dataset.target;
@@ -23,7 +22,7 @@ tabs.forEach(btn=>{
   });
 });
 
-// 2) Resaltado + indicador
+
 function setActiveTabById(id){
   tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
   moveIndicator();
@@ -50,16 +49,16 @@ function moveIndicator(){
 }
 window.addEventListener('resize', moveIndicator);
 
-// === FOTO AHORA ABSOLUTE (se desplaza con el contenido) ===
+
 let start=null, end=null, scaleEnd=0.28, maxProgress=1;
 let wrapOffset = {x:0, y:0};
 
-// Calcula anclas (inicio y destino) en coords locales del wrap
+
 function computeAnchors(){
     const wrapRect = wrap.getBoundingClientRect();
     const wrapOffset = { x: wrapRect.left + window.scrollX, y: wrapRect.top + window.scrollY };
   
-    // Coloca la foto un poco más a la izquierda y arriba => apenas superpuesta
+
     const startCenter = {
       x: wrapOffset.x + wrapRect.width * 0.50,   // antes 0.56
       y: wrapOffset.y + wrapRect.height * 0.40
@@ -71,11 +70,11 @@ function computeAnchors(){
       y: window.scrollY + dockRect.top  + dockRect.height / 2
     };
   
-    // Convertir a coords del wrap (porque la foto es absolute dentro de wrap)
+
     start = { x: startCenter.x - wrapOffset.x, y: startCenter.y - wrapOffset.y };
     end   = { x: dockCenter.x   - wrapOffset.x, y: dockCenter.y   - wrapOffset.y };
   
-    // Escala final para encajar en el dock
+
     scaleEnd = (dockRect.width / pic.offsetWidth) * 1.12;
   
     const inicio = document.getElementById('inicio');
@@ -83,7 +82,7 @@ function computeAnchors(){
     maxProgress = Math.max(240, usable);
   }
   
-  // Coloca la imagen y la sombra en el punto de inicio (sin tapar texto)
+
   function placePicAtStart(){
     pic.style.left = '0px';
     pic.style.top  = '0px';
@@ -92,7 +91,7 @@ function computeAnchors(){
     const shadowWidth = Math.max(280, Math.round(size * 1.05));
     shadow.style.width = `${shadowWidth}px`;
   
-    // aplicar estado inicial (p = 0)
+
     const x = start?.x ?? 0;
     const y = start?.y ?? 0;
     pic.style.transform = `translate(${x - size/2}px, ${y - size/2}px)`;
@@ -100,7 +99,6 @@ function computeAnchors(){
   }
   
 
-// Interpola entre inicio y fin según el scroll
 function animatePic(forceP = null){
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -119,14 +117,13 @@ function animatePic(forceP = null){
   shadow.style.opacity   = String(0.5 * (1 - p));
 }
 
-// Barra de progreso
+
 function updateScrollBar(){
   const h = document.documentElement;
   const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
   scrollbar.style.width = `${clamp(scrolled,0,1) * 100}%`;
 }
 
-// Recalc & listeners
 function recalc(){
   computeAnchors();
   placePicAtStart();
@@ -137,9 +134,9 @@ window.addEventListener('scroll', () => { animatePic(); updateScrollBar(); }, { 
 window.addEventListener('resize', recalc);
 window.addEventListener('orientationchange', recalc);
 
-// Footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Init
 recalc();
 setActiveTabById('#inicio');
+
