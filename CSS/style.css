@@ -10,7 +10,7 @@
     --glow:#3b82f6;
   }
   
-  /* Base */
+
   *{ box-sizing:border-box }
   html{ scroll-behavior:smooth }
   body{
@@ -21,7 +21,7 @@
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* Barra de progreso */
+
   #scrollbar{
     position:fixed; inset:0 auto auto 0; height:3px; width:0%;
     background:linear-gradient(90deg, var(--glow), #60a5fa);
@@ -29,7 +29,7 @@
     z-index:80;
   }
   
-  /* Header / Nav */
+
   .nav{
     position:fixed; inset:0 0 auto 0; height:64px; z-index:70;
     display:flex; align-items:center; gap:12px; padding:0 12px;
@@ -43,7 +43,7 @@
     flex:0 0 auto; box-shadow:0 0 0 2px #ffffff22;
   }
   
-  /* Tabs */
+
   .tabs{ position:relative; margin-left:6px; display:flex; gap:6px; padding:6px;
     border-radius:12px; background:color-mix(in srgb, var(--panel) 88%, #ffffff 12%);
     box-shadow:0 4px 14px #00000030 inset, 0 1px 0 #ffffff10; overflow:auto; scrollbar-width:none }
@@ -54,34 +54,33 @@
     background:var(--brand); box-shadow:0 8px 24px #2c7ef533, 0 1px 0 #ffffff88 inset;
     transition: transform .25s ease, width .25s ease, left .25s ease; z-index:-1 }
   
-  /* Layout */
+
   main{ padding-top:64px }
   section{ min-height:100svh; display:grid; place-items:center; padding:48px 18px }
   
-  /* HERO */
-  /* --- HERO --- */
+
 .hero{
     width:min(1100px,92vw);
     display:grid;
-    grid-template-columns: 1.05fr 1.45fr; /* más espacio para el texto */
+    grid-template-columns: 1.05fr 1.45fr; 
     gap:min(6vw,52px);
     align-items:center;
   }
   .profile-wrap{
     position:relative;
     min-height:420px;
-    padding-left: clamp(12px, 2.6vw, 24px); /* margen a la izquierda */
+    padding-left: clamp(12px, 2.6vw, 24px); 
   }
   
-  /* FOTO: absolute (scrollea con la página) y un poco más pequeña */
+
   .profile-pic{
     position:absolute;
     width:clamp(210px, 24vw, 320px);
     height:clamp(210px, 24vw, 320px);
     border-radius:50%;
     background:url("/IMAGE/profile.png") center/cover no-repeat;
-    z-index:40;              /* SIEMPRE por debajo del texto */
-    pointer-events:none;     /* que no intercepte clics */
+    z-index:40;              
+    pointer-events:none;    
     will-change:transform;
     box-shadow:0 18px 48px #000a, 0 0 0 4px #00000066 inset, 0 0 0 3px #ffffff22;
   }
@@ -92,18 +91,18 @@
     filter:blur(12px); opacity:.5; z-index:1;
   }
   
-  /* Tarjeta de presentación: encima y más a la derecha */
+
   .intro{
     position:relative;
-    z-index:100;                                 /* por encima de la foto */
-    margin-left: clamp(42px, 6.5vw, 110px);      /* separa el texto de la foto */
+    z-index:100;                                 
+    margin-left: clamp(42px, 6.5vw, 110px);      
   }
   
   
   .section-card h2{ margin:0 0 8px; font-size:clamp(22px,2.8vw,34px) }
   .divider{ height:1px; background:#ffffff14; margin:12px 0 18px }
   
-  /* Título con degradado */
+
   .brand-name{ font-family:'Sora', sans-serif; font-weight:800 }
   .gradient-blue{
     background:linear-gradient(90deg, #d8e9ff 0%, #a9ccff 40%, #6fa8ff 70%, #6fa8ff55 100%);
@@ -117,7 +116,7 @@
   .btn:hover{ transform:translateY(-2px) }
   .btn.ghost{ background:#ffffff10; color:var(--text); border:1px solid #ffffff1f; box-shadow:none }
   
-  /* Sobre mí */
+
   .about-grid{ display:grid; gap:22px; grid-template-columns: 1fr 1.4fr }
   @media (max-width:900px){ .about-grid{ grid-template-columns:1fr } }
   .tech-wall{ display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)) }
@@ -125,16 +124,15 @@
   .tech img{ width:64px; height:64px; object-fit:contain }
   .tech:hover{ transform: translateY(-6px) scale(1.04) rotate(-1.5deg); box-shadow:0 16px 36px #1f6feb55, 0 0 0 1px #67b3ff55 inset; filter: drop-shadow(0 0 8px #3b82f6aa) }
   
-  /* Contacto */
+
   .contact{ display:grid; gap:12px }
   .contact a{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text); padding:12px 14px; border-radius:12px; background:#ffffff10; border:1px solid #ffffff1a; min-height:48px; transition: transform .15s ease, background .15s ease }
   .contact a:hover{ background:#ffffff18; transform: translateX(4px) }
   .contact a img{ width:24px; height:24px }
-  
-  /* Footer */
+
   footer{ text-align:center; color:#8f9aa7; padding:28px 12px 72px }
   
-  /* Botón CG */
+
   .corner-logo{
     position:fixed; right:16px; bottom:16px; z-index:90;
     font-family:'Pacifico', cursive; font-size:26px; letter-spacing:.3px;
@@ -144,7 +142,7 @@
   }
   .corner-logo:hover{ transform: translateY(-2px) rotate(-2deg); box-shadow:0 16px 38px #000a, 0 0 18px #60a5fa55 }
   
-  /* Reveal */
+
   [data-reveal]{ opacity:0; transform: translateY(18px) scale(.98); transition: opacity .5s ease, transform .5s ease }
   [data-reveal].show{ opacity:1; transform: none }
   @keyframes popIn{ from{ opacity:0; transform: translateY(10px) scale(.95) } to{ opacity:1; transform: none } }
@@ -154,4 +152,5 @@
     .tab-indicator, .btn, .tech, .corner-logo{ transition:none }
     [data-reveal]{ transition:none }
   }
+
   
